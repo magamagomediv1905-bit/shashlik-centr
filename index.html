@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<title>Шашлык Центр — Всегда свежее мясо</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#111111;--accent:#CD9138;--accent2:#e8a845;--white:#fff;--gray:#888;--light:#f5f5f5;--dark2:#1a1a1a;--card:#1e1e1e;--border:#2a2a2a}
+html{scroll-behavior:smooth;overflow-x:hidden;width:100%;max-width:100%}
+body{font-family:'Manrope',sans-serif;background:#0d0d0d;color:#e0e0e0;min-height:100vh;overflow-x:hidden;width:100%;max-width:100%}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;border:none;outline:none;font-family:inherit}
+input,select,textarea{font-family:inherit;outline:none}
+img{max-width:100%;display:block}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#111}
+::-webkit-scrollbar-thumb{background:#CD9138;border-radius:3px}
+
+/* TOPBAR */
+.topbar{background:#000;padding:6px 0;font-size:13px;color:#aaa;text-align:center}
+.topbar span{margin:0 12px}
+.topbar strong{color:var(--accent)}
+
+/* HEADER */
+header{background:var(--bg);position:sticky;top:0;z-index:1000;border-bottom:1px solid var(--border);width:100%;max-width:100vw}
+.header-inner{max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:24px;height:70px}
+.logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.logo img{height:44px;width:auto}
+.logo-text{font-family:'Montserrat',sans-serif;font-weight:800;font-size:18px;color:var(--white);letter-spacing:1px;line-height:1.1}
+.logo-text span{color:var(--accent);display:block;font-size:11px;font-weight:500;letter-spacing:2px}
+nav{display:flex;align-items:center;gap:4px;flex:1;justify-content:center}
+.nav-link{padding:8px 14px;border-radius:6px;font-size:14px;font-weight:500;color:#ccc;transition:all .2s;white-space:nowrap}
+.nav-link:hover,.nav-link.active{color:var(--accent);background:rgba(205,145,56,.1)}
+.header-phones{display:flex;flex-direction:column;gap:2px;font-size:12px;font-weight:600}
+.header-phones a{color:#ccc;transition:color .2s}
+.header-phones a:hover{color:var(--accent)}
+.cart-btn{position:relative;background:var(--accent);color:#000;border-radius:8px;padding:8px 16px;font-weight:700;font-size:14px;display:flex;align-items:center;gap:8px;transition:background .2s;flex-shrink:0}
+.cart-btn:hover{background:var(--accent2)}
+.cart-count{background:#000;color:var(--accent);border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800}
+
+/* PAGES */
+.page{display:none}
+.page.active{display:block}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0d0d0d 0%,#1a0f00 50%,#0d0d0d 100%);padding:80px 24px;position:relative;overflow:hidden;max-width:100vw}
+.hero::before{content:'';position:absolute;inset:0;background:url('https://web.archive.org/web/20250518061314im_/https://shashlikcentr.ru/wp-content/uploads/2021/04/cyplenok-na-mangale.jpeg') center/cover;opacity:.15}
+.hero-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:1}
+.hero-badge{display:inline-block;background:rgba(205,145,56,.15);border:1px solid var(--accent);color:var(--accent);padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600;margin-bottom:20px;letter-spacing:1px}
+.hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(32px,4vw,56px);font-weight:800;color:#fff;line-height:1.1;margin-bottom:20px}
+.hero h1 span{color:var(--accent)}
+.hero-desc{font-size:16px;color:#aaa;line-height:1.7;margin-bottom:32px;max-width:480px}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+.btn-primary{background:var(--accent);color:#000;padding:14px 28px;border-radius:8px;font-weight:700;font-size:15px;transition:all .2s;display:inline-block}
+.btn-primary:hover{background:var(--accent2);transform:translateY(-2px)}
+.btn-secondary{background:transparent;border:2px solid var(--accent);color:var(--accent);padding:12px 28px;border-radius:8px;font-weight:700;font-size:15px;transition:all .2s;display:inline-block}
+.btn-secondary:hover{background:rgba(205,145,56,.1)}
+.hero-stats{display:flex;gap:32px;margin-top:40px}
+.hero-stat{text-align:center}
+.hero-stat strong{display:block;font-family:'Montserrat',sans-serif;font-size:28px;font-weight:800;color:var(--accent)}
+.hero-stat span{font-size:12px;color:#888}
+.hero-img{border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(205,145,56,.2)}
+.hero-img img{width:100%;height:440px;object-fit:cover}
+
+/* INFO BAR */
+.info-bar{background:var(--dark2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.info-bar-inner{max-width:1280px;margin:0 auto;padding:20px 24px;display:flex;gap:40px;justify-content:center;flex-wrap:wrap}
+.info-item{display:flex;align-items:center;gap:12px}
+.info-icon{width:40px;height:40px;background:rgba(205,145,56,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.info-item strong{display:block;font-size:14px;color:#fff;font-weight:600}
+.info-item span{font-size:12px;color:#888}
+
+/* SECTIONS */
+.section{padding:70px 24px}
+.section-inner{max-width:1280px;margin:0 auto}
+.section-header{text-align:center;margin-bottom:48px}
+.section-header h2{font-family:'Montserrat',sans-serif;font-size:clamp(24px,3vw,36px);font-weight:800;color:#fff;margin-bottom:12px}
+.section-header h2 span{color:var(--accent)}
+.section-header p{color:#888;font-size:15px;max-width:540px;margin:0 auto}
+.accent-line{display:block;width:60px;height:3px;background:var(--accent);margin:16px auto 0;border-radius:2px}
+
+/* CATEGORY SLIDER */
+.cat-slider{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px}
+.cat-card{background:var(--card);border-radius:12px;overflow:hidden;border:1px solid var(--border);cursor:pointer;transition:all .2s;text-align:center}
+.cat-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 8px 24px rgba(205,145,56,.15)}
+.cat-card img{width:100%;height:120px;object-fit:cover}
+.cat-card-name{padding:10px;font-size:13px;font-weight:600;color:#ddd}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.about-img-wrap{border-radius:16px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,.4)}
+.about-img-wrap img{width:100%;height:420px;object-fit:cover}
+.about-badge{display:inline-block;background:rgba(205,145,56,.1);border:1px solid var(--accent);color:var(--accent);padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600;margin-bottom:20px;letter-spacing:1px}
+.about-text h2{font-family:'Montserrat',sans-serif;font-size:clamp(22px,2.5vw,32px);font-weight:800;color:#fff;margin-bottom:16px;line-height:1.2}
+.about-text p{color:#999;line-height:1.8;margin-bottom:16px;font-size:15px}
+.about-features{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
+.about-feature{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;display:flex;align-items:flex-start;gap:12px}
+.about-feature-icon{font-size:24px;flex-shrink:0}
+.about-feature strong{display:block;font-size:13px;font-weight:700;color:#fff;margin-bottom:4px}
+.about-feature span{font-size:12px;color:#888}
+
+/* REVIEWS */
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
+.review-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px}
+.review-stars{color:var(--accent);font-size:16px;margin-bottom:12px}
+.review-text{color:#bbb;font-size:14px;line-height:1.7;margin-bottom:16px;font-style:italic}
+.review-author{display:flex;align-items:center;gap:12px}
+.review-avatar{width:40px;height:40px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;color:#000;flex-shrink:0}
+.review-author strong{display:block;font-size:14px;color:#fff}
+.review-author span{font-size:12px;color:#888}
+
+/* ===== MENU PAGE ===== */
+.menu-page-layout{max-width:1280px;margin:0 auto;padding:32px 24px;display:grid;grid-template-columns:260px 1fr;gap:32px;align-items:start}
+.menu-sidebar{background:var(--dark2);border:1px solid var(--border);border-radius:12px;padding:16px;position:sticky;top:90px}
+.menu-sidebar h3{font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:#888;letter-spacing:1px;text-transform:uppercase;padding:0 8px 12px;border-bottom:1px solid var(--border);margin-bottom:8px}
+.cat-menu-item{display:flex;align-items:center;gap:10px;padding:10px 8px;border-radius:8px;cursor:pointer;transition:all .2s;font-size:14px;color:#ccc;font-weight:500}
+.cat-menu-item:hover{background:rgba(205,145,56,.08);color:#fff}
+.cat-menu-item.active{background:rgba(205,145,56,.12);color:var(--accent);font-weight:600}
+.cat-menu-item .dot{width:8px;height:8px;border-radius:50%;background:var(--border);flex-shrink:0;transition:background .2s}
+.cat-menu-item.active .dot{background:var(--accent)}
+.menu-content h2{font-family:'Montserrat',sans-serif;font-size:24px;font-weight:800;color:#fff;margin-bottom:6px}
+.menu-content .cat-desc{color:#888;font-size:14px;margin-bottom:24px}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:20px}
+.product-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:all .2s;display:flex;flex-direction:column}
+.product-card:hover{border-color:rgba(205,145,56,.4);box-shadow:0 8px 24px rgba(0,0,0,.3);transform:translateY(-2px)}
+.product-img{position:relative;height:180px;overflow:hidden;background:#161616}
+.product-img img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.product-card:hover .product-img img{transform:scale(1.05)}
+.product-weight{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.7);color:var(--accent);padding:4px 8px;border-radius:6px;font-size:11px;font-weight:700}
+.product-body{padding:14px;flex:1;display:flex;flex-direction:column}
+.product-name{font-size:14px;font-weight:700;color:#fff;margin-bottom:6px;line-height:1.3}
+.product-desc{font-size:12px;color:#888;line-height:1.5;flex:1;margin-bottom:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.product-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto}
+.product-price{font-family:'Montserrat',sans-serif;font-size:18px;font-weight:800;color:var(--accent)}
+.add-btn{background:var(--accent);color:#000;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:700;transition:all .2s;display:flex;align-items:center;gap:6px}
+.add-btn:hover{background:var(--accent2);transform:scale(1.05)}
+.qty-control{display:flex;align-items:center;gap:8px}
+.qty-btn{width:28px;height:28px;border-radius:6px;background:rgba(205,145,56,.15);color:var(--accent);font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.qty-btn:hover{background:rgba(205,145,56,.3)}
+.qty-num{font-weight:700;color:#fff;min-width:20px;text-align:center;font-size:14px}
+
+/* DRAG HANDLE */
+.cart-drag-handle{display:none;width:40px;height:4px;background:#444;border-radius:2px;margin:12px auto 0;cursor:pointer}
+@media(max-width:768px){.cart-drag-handle{display:block}}
+
+/* ===== CART SIDEBAR ===== */
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:2000;display:none}
+.cart-overlay.open{display:block}
+.cart-panel{position:fixed;top:0;right:-480px;width:480px;max-width:100vw;height:100vh;background:#161616;z-index:2001;transition:right .3s ease;display:flex;flex-direction:column;border-left:1px solid var(--border)}
+.cart-panel.open{right:0}
+.cart-header{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.cart-header h3{font-family:'Montserrat',sans-serif;font-size:18px;font-weight:800;color:#fff}
+.cart-close{background:rgba(255,255,255,.08);color:#fff;width:36px;height:36px;border-radius:8px;font-size:18px;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.cart-close:hover{background:rgba(255,255,255,.15)}
+.cart-items{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:16px 24px}
+.cart-empty{text-align:center;padding:60px 0;color:#666}
+.cart-empty-icon{font-size:64px;margin-bottom:16px}
+.cart-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.cart-item-img{width:64px;height:64px;border-radius:8px;object-fit:cover;flex-shrink:0}
+.cart-item-body{flex:1}
+.cart-item-name{font-size:14px;font-weight:600;color:#fff;margin-bottom:4px}
+.cart-item-price{font-size:13px;color:var(--accent);font-weight:700}
+.cart-item-controls{display:flex;align-items:center;gap:8px;margin-top:6px}
+.cart-remove{color:#666;font-size:12px;cursor:pointer;margin-left:auto;transition:color .2s}
+.cart-remove:hover{color:#e55}
+.cart-footer{padding:20px 24px;border-top:1px solid var(--border)}
+.cart-total{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.cart-total span{color:#888;font-size:14px}
+.cart-total strong{font-family:'Montserrat',sans-serif;font-size:22px;font-weight:800;color:#fff}
+.cart-total strong em{color:var(--accent);font-style:normal}
+.btn-checkout{width:100%;background:var(--accent);color:#000;padding:16px;border-radius:10px;font-size:16px;font-weight:800;transition:all .2s}
+.btn-checkout:hover{background:var(--accent2)}
+.cart-min-note{font-size:12px;color:#888;text-align:center;margin-top:10px}
+
+/* ===== ORDER MODAL ===== */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:3000;display:none}
+.modal-overlay.open{display:block}
+.modal{position:fixed;bottom:0;left:0;right:0;height:90vh;background:#161616;border:1px solid var(--border);border-radius:16px 16px 0 0;z-index:3001;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-y:contain;display:none;flex-direction:column}
+.modal-overlay.open .modal{display:flex}
+.modal-header{padding:24px 24px 0;display:flex;align-items:center;justify-content:space-between}
+.modal-header h3{font-family:'Montserrat',sans-serif;font-size:20px;font-weight:800;color:#fff}
+.modal-close{background:rgba(255,255,255,.08);color:#fff;width:36px;height:36px;border-radius:8px;font-size:18px;display:flex;align-items:center;justify-content:center}
+.modal-close:hover{background:rgba(255,255,255,.15)}
+.modal-body{padding:24px;padding-bottom:100px}
+.form-group{margin-bottom:18px}
+.form-group label{display:block;font-size:13px;font-weight:600;color:#bbb;margin-bottom:6px}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:#1e1e1e;border:1px solid var(--border);border-radius:8px;padding:12px 14px;color:#fff;font-size:14px;transition:border-color .2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--accent)}
+.form-group select option{background:#1e1e1e}
+.form-group textarea{resize:vertical;min-height:80px}
+.delivery-toggle{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px}
+.delivery-opt{border:2px solid var(--border);border-radius:8px;padding:12px;text-align:center;cursor:pointer;transition:all .2s}
+.delivery-opt.active{border-color:var(--accent);background:rgba(205,145,56,.08)}
+.delivery-opt strong{display:block;font-size:14px;font-weight:700;color:#fff;margin-bottom:2px}
+.delivery-opt span{font-size:12px;color:#888}
+.order-summary{background:#1e1e1e;border-radius:10px;padding:16px;margin-bottom:20px}
+.order-summary h4{font-size:13px;font-weight:700;color:#888;margin-bottom:10px;text-transform:uppercase;letter-spacing:1px}
+.order-sum-row{display:flex;justify-content:space-between;font-size:14px;padding:4px 0;color:#ccc}
+.order-sum-row.total{border-top:1px solid var(--border);margin-top:8px;padding-top:12px;font-weight:700;color:#fff;font-size:16px}
+.order-sum-row.total em{color:var(--accent);font-style:normal}
+.btn-place-order{width:100%;background:var(--accent);color:#000;padding:16px;border-radius:10px;font-size:16px;font-weight:800;transition:all .2s;position:sticky;bottom:0}
+.btn-place-order:hover{background:var(--accent2)}
+.address-field{display:none}
+.address-field.show{display:block}
+
+/* ===== DELIVERY PAGE ===== */
+.delivery-page{max-width:900px;margin:0 auto;padding:48px 24px}
+.delivery-page h1{font-family:'Montserrat',sans-serif;font-size:32px;font-weight:800;color:#fff;margin-bottom:8px}
+.page-breadcrumb{color:#888;font-size:13px;margin-bottom:32px}
+.page-breadcrumb span{color:var(--accent)}
+.delivery-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px;margin-bottom:40px}
+.delivery-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;text-align:center}
+.delivery-card-icon{font-size:40px;margin-bottom:12px}
+.delivery-card h3{font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:#fff;margin-bottom:8px}
+.delivery-card p{font-size:14px;color:#888;line-height:1.6}
+.delivery-card strong{color:var(--accent)}
+.delivery-conditions{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px}
+.delivery-conditions h3{font-family:'Montserrat',sans-serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:16px}
+.delivery-conditions ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.delivery-conditions li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:#bbb;line-height:1.6}
+.delivery-conditions li::before{content:'✓';color:var(--accent);font-weight:700;flex-shrink:0;margin-top:1px}
+
+/* ===== ABOUT PAGE ===== */
+.about-page{max-width:900px;margin:0 auto;padding:48px 24px}
+.about-page h1{font-family:'Montserrat',sans-serif;font-size:32px;font-weight:800;color:#fff;margin-bottom:8px}
+.about-company-block{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-bottom:48px}
+.about-company-img{border-radius:12px;overflow:hidden}
+.about-company-img img{width:100%;height:320px;object-fit:cover}
+.about-company-text p{color:#999;line-height:1.8;font-size:15px;margin-bottom:14px}
+.advantages-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.advantage-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center}
+.advantage-icon{font-size:36px;margin-bottom:12px}
+.advantage-card h4{font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:#fff;margin-bottom:6px}
+.advantage-card p{font-size:12px;color:#888;line-height:1.5}
+
+/* ===== REVIEWS PAGE ===== */
+.reviews-page{max-width:900px;margin:0 auto;padding:48px 24px}
+.reviews-page h1{font-family:'Montserrat',sans-serif;font-size:32px;font-weight:800;color:#fff;margin-bottom:8px}
+.reviews-rating{display:flex;align-items:center;gap:16px;margin:24px 0 32px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px}
+.rating-big{font-family:'Montserrat',sans-serif;font-size:56px;font-weight:800;color:var(--accent);line-height:1}
+.rating-stars{color:var(--accent);font-size:24px;margin-bottom:4px}
+.rating-label{font-size:13px;color:#888}
+.review-form{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px;margin-top:40px}
+.review-form h3{font-family:'Montserrat',sans-serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:20px}
+.star-rating{display:flex;gap:6px;margin-bottom:16px}
+.star-rating label{font-size:28px;cursor:pointer;color:#444;transition:color .15s}
+.star-rating input{display:none}
+.star-rating label:hover,.star-rating label.active{color:var(--accent)}
+
+/* ===== CONTACTS PAGE ===== */
+.contacts-page{max-width:900px;margin:0 auto;padding:48px 24px}
+.contacts-page h1{font-family:'Montserrat',sans-serif;font-size:32px;font-weight:800;color:#fff;margin-bottom:8px}
+.contacts-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:32px}
+.contact-block{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px}
+.contact-block h3{font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:var(--accent);margin-bottom:16px;text-transform:uppercase;letter-spacing:1px;font-size:13px}
+.contact-item{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px}
+.contact-item-icon{width:36px;height:36px;background:rgba(205,145,56,.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.contact-item strong{display:block;font-size:13px;font-weight:700;color:#fff;margin-bottom:2px}
+.contact-item span{font-size:14px;color:#aaa}
+.contact-item a{color:var(--accent)}
+.map-placeholder{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;height:280px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:#888;grid-column:1/-1}
+.callback-form{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;grid-column:1/-1}
+.callback-form h3{font-family:'Montserrat',sans-serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:20px}
+
+/* FOOTER */
+footer{background:var(--bg);border-top:1px solid var(--border);padding:48px 24px 24px;overflow:hidden;max-width:100vw}
+.footer-inner{max-width:1280px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-logo{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.footer-logo img{height:40px}
+.footer-logo-text{font-family:'Montserrat',sans-serif;font-weight:800;font-size:16px;color:#fff}
+.footer-logo-text span{color:var(--accent);display:block;font-size:10px;font-weight:500;letter-spacing:2px}
+.footer-desc{font-size:13px;color:#888;line-height:1.7;margin-bottom:20px}
+.footer-phones a{display:block;font-size:14px;font-weight:600;color:var(--accent);margin-bottom:4px}
+.footer-col h4{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#888;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.footer-col li a{font-size:14px;color:#888;transition:color .2s}
+.footer-col li a:hover{color:var(--accent)}
+.footer-bottom{border-top:1px solid var(--border);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-bottom p{font-size:12px;color:#555}
+
+/* SUCCESS MODAL */
+.success-modal{text-align:center;padding:40px}
+.success-icon{font-size:64px;margin-bottom:20px}
+.success-modal h3{font-family:'Montserrat',sans-serif;font-size:24px;font-weight:800;color:#fff;margin-bottom:12px}
+.success-modal p{color:#888;font-size:14px;line-height:1.6}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;background:#1e1e1e;border:1px solid var(--accent);color:#fff;padding:14px 20px;border-radius:10px;font-size:14px;font-weight:500;z-index:9999;transform:translateY(80px);opacity:0;transition:all .3s;max-width:300px}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* ===================== MOBILE BOTTOM NAV ===================== */
+.mob-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--bg);border-top:1px solid var(--border);z-index:990;padding-bottom:env(safe-area-inset-bottom,0)}
+.mob-nav-inner{display:flex;justify-content:space-around}
+.mob-nav-btn{display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 0;flex:1;cursor:pointer;color:#555;font-size:10px;font-weight:600;font-family:'Manrope',sans-serif;border:none;background:none;transition:color .2s;position:relative}
+.mob-nav-btn.active{color:var(--accent)}
+.mob-nav-btn svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.mob-cart-badge{position:absolute;top:4px;right:calc(50% - 20px);background:var(--accent);color:#000;border-radius:50%;width:16px;height:16px;font-size:9px;font-weight:800;display:flex;align-items:center;justify-content:center;line-height:1}
+
+/* ===================== FLOAT CART BUTTON ===================== */
+.float-cart{position:fixed;bottom:70px;left:14px;right:14px;z-index:999;
+  transform:translateY(120px);opacity:0;
+  transition:transform .38s cubic-bezier(.34,1.4,.64,1),opacity .28s ease;
+  pointer-events:none}
+.float-cart.visible{transform:translateY(0);opacity:1;pointer-events:auto}
+.float-cart-btn{width:100%;background:var(--accent);color:#000;
+  padding:15px 18px;border-radius:14px;font-weight:800;font-size:15px;
+  display:flex;justify-content:space-between;align-items:center;
+  box-shadow:0 6px 28px rgba(205,145,56,.45);border:none;cursor:pointer;
+  font-family:'Manrope',sans-serif;transition:transform .12s,background .15s}
+.float-cart-btn:active{transform:scale(.98);background:var(--accent2)}
+.float-cart-left{display:flex;align-items:center;gap:8px;font-size:15px}
+.float-cart-right{font-family:'Montserrat',sans-serif;font-size:16px;font-weight:800}
+
+/* ===================== MOB MORE OVERLAY ===================== */
+.mob-more-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:1980;display:none}
+.mob-more-overlay.open{display:block}
+.mob-more-sheet{position:absolute;bottom:62px;left:0;right:0;background:var(--bg);border-top:1px solid var(--border);border-radius:16px 16px 0 0;padding:12px 0 8px}
+.mob-more-handle{width:40px;height:4px;background:#444;border-radius:2px;margin:0 auto 14px}
+.mob-more-item{display:flex;align-items:center;gap:14px;padding:14px 24px;font-size:15px;font-weight:600;color:#ccc;cursor:pointer;transition:background .15s}
+.mob-more-item:active{background:rgba(255,255,255,.06)}
+.mob-more-item-icon{font-size:20px;width:28px;text-align:center}
+
+/* ===================== NO-IMAGE FALLBACK ===================== */
+.product-img.no-img{background:#1a1a1a;display:flex!important;align-items:center;justify-content:center}
+.product-img.no-img::after{content:'🔥';font-size:36px;pointer-events:none}
+.product-img.no-img img{display:none!important}
+
+/* ===================== RESPONSIVE 1024 ===================== */
+@media(max-width:1024px){
+  .footer-top{grid-template-columns:1fr 1fr}
+  .about-grid{grid-template-columns:1fr}
+  .about-img-wrap{display:none}
+}
+
+/* ===================== RESPONSIVE 768 ===================== */
+@media(max-width:768px){
+  /* Space for mob-nav (62px) + float cart (56px) + gap */
+  body{padding-bottom:134px}
+
+  /* Topbar */
+  .topbar{font-size:11px;padding:5px 12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .topbar span{margin:0 5px}
+
+  /* ---- HEADER: logo left, cart right, 56px ---- */
+  header{position:sticky;top:0;z-index:500}
+  .header-inner{padding:0 16px;height:56px;gap:0;justify-content:space-between}
+  .logo img{height:32px}
+  .logo-text{font-size:13px;letter-spacing:.5px}
+  .logo-text span{font-size:9px;letter-spacing:1px}
+  nav{display:none}
+  .header-phones{display:none}
+  .cart-btn{padding:8px 14px;font-size:13px;gap:5px;border-radius:8px}
+  .cart-count{width:18px;height:18px;font-size:10px}
+
+  /* Mobile nav */
+  .mob-nav{display:block}
+
+  /* ---- HERO ---- */
+  .hero{padding:34px 16px 30px}
+  .hero-inner{grid-template-columns:1fr;gap:0}
+  .hero-img{display:none}
+  .hero-badge{font-size:11px;padding:5px 11px;margin-bottom:12px}
+  .hero h1{font-size:24px;margin-bottom:12px;line-height:1.15}
+  .hero-desc{font-size:13px;line-height:1.6;margin-bottom:20px;max-width:100%}
+  .hero-actions{flex-direction:column;gap:10px}
+  .hero-actions .btn-primary,.hero-actions .btn-secondary{width:100%;text-align:center;padding:15px;font-size:15px;box-sizing:border-box}
+  .hero-stats{display:flex;justify-content:space-between;margin-top:22px;padding:0 2px;gap:0}
+  .hero-stat strong{font-size:20px}
+  .hero-stat span{font-size:10px}
+
+  /* ---- INFO BAR: 2×2 ---- */
+  .info-bar-inner{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px 16px}
+  .info-item{gap:8px;align-items:flex-start}
+  .info-icon{width:30px;height:30px;font-size:13px;flex-shrink:0;margin-top:2px}
+  .info-item strong{font-size:11px;line-height:1.3}
+  .info-item span{font-size:10px}
+
+  /* ---- SECTIONS ---- */
+  .section{padding:36px 16px}
+  .section-header{margin-bottom:24px}
+  .section-header h2{font-size:21px}
+  .section-header p{font-size:13px}
+
+  /* Category cards on home — 2 cols */
+  .cat-slider{grid-template-columns:repeat(2,1fr);gap:9px}
+  .cat-card img{height:88px}
+  .cat-card-name{font-size:12px;padding:7px 6px}
+
+  /* About on home */
+  .about-grid{grid-template-columns:1fr;gap:0}
+  .about-img-wrap{display:none}
+  .about-badge{font-size:11px;margin-bottom:12px}
+  .about-text h2{font-size:19px;margin-bottom:10px}
+  .about-text p{font-size:13px;margin-bottom:10px}
+  .about-features{grid-template-columns:1fr 1fr;gap:9px;margin-top:14px}
+  .about-feature{padding:11px;gap:8px}
+  .about-feature-icon{font-size:18px}
+  .about-feature strong{font-size:12px}
+  .about-feature span{font-size:11px}
+  .btn-primary,.btn-secondary{font-size:14px;padding:13px 20px}
+
+  /* Reviews on home */
+  .reviews-grid{grid-template-columns:1fr;gap:12px}
+  .review-card{padding:16px}
+
+  /* ===================== MENU PAGE ===================== */
+  .menu-page-layout{grid-template-columns:1fr;gap:0;padding:0}
+
+  /* Category chips — sticky horizontal scroll */
+  .menu-sidebar{
+    position:sticky;top:56px;z-index:490;
+    border-radius:0;border-left:none;border-right:none;border-top:none;
+    padding:10px 0;background:var(--bg);
+    box-shadow:0 3px 12px rgba(0,0,0,.35);
+  }
+  .menu-sidebar h3{display:none}
+  #menuSidebar,.categories-scroll{
+    display:flex;flex-wrap:nowrap;overflow-x:auto;gap:8px;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;
+    padding:0 16px 2px;
+  }
+  #menuSidebar::-webkit-scrollbar,.categories-scroll::-webkit-scrollbar{display:none}
+  .cat-menu-item{
+    white-space:nowrap;flex-shrink:0;min-width:max-content;
+    padding:7px 16px;border-radius:20px;
+    background:#1e1e1e;font-size:13px;font-weight:600;
+    border:1.5px solid #2a2a2a;color:#bbb;
+    transition:all .18s;
+  }
+  .cat-menu-item.active{
+    background:var(--accent);color:#000;border-color:var(--accent);
+  }
+  .cat-menu-item .dot{display:none}
+
+  /* Content area */
+  .menu-content{padding:12px 0 20px}
+  .menu-content h2{font-size:19px;margin-bottom:3px;padding:0 12px}
+  .menu-content .cat-desc{font-size:12px;color:#555;margin-bottom:12px;padding:0 12px}
+
+  /* ---- PRODUCT CARDS — food-app style ---- */
+  .product-card{
+    position:relative;
+    border-radius:12px;
+    overflow:hidden;
+    height:220px;
+    display:flex;
+    flex-direction:column;
+    background:var(--card);
+    border:1px solid var(--border);
+    box-shadow:0 2px 12px rgba(0,0,0,.45);
+    transition:transform .12s ease,box-shadow .12s ease;
+    cursor:pointer;
+  }
+  .product-card:hover{transform:none;box-shadow:0 2px 12px rgba(0,0,0,.45)}
+  .product-card:active{transform:scale(.97);box-shadow:0 1px 6px rgba(0,0,0,.35)}
+
+  /* Photo — top 60% */
+  .product-img{
+    height:60%;flex-shrink:0;
+    position:relative;overflow:hidden;background:#161616;
+  }
+  .product-img img{width:100%;height:100%;object-fit:cover;transition:none}
+  .product-card:hover .product-img img{transform:none}
+  .product-weight{
+    position:absolute;top:6px;left:6px;right:auto;
+    background:rgba(0,0,0,.72);color:var(--accent);
+    padding:3px 7px;border-radius:6px;font-size:10px;font-weight:700;
+  }
+
+  /* Body — bottom 40% */
+  .product-body{
+    flex:1;padding:8px 10px 10px;
+    display:flex;flex-direction:column;position:relative;
+  }
+  .product-name{
+    font-size:12px;font-weight:700;color:#fff;
+    line-height:1.3;margin-bottom:0;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+    flex:1;
+  }
+  .product-desc{display:none}
+
+  /* Price + round "+" button in bottom row */
+  .product-footer{
+    display:flex;align-items:center;justify-content:space-between;
+    margin-top:6px;flex-direction:row;gap:0;
+  }
+  .product-price{font-size:14px;font-weight:800;color:var(--accent);line-height:1}
+
+  /* Round "+" button */
+  .add-btn{
+    width:34px;height:34px;border-radius:50%;
+    padding:0;font-size:0;color:transparent;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+    background:var(--accent);
+    box-shadow:0 3px 10px rgba(205,145,56,.5);
+    transition:transform .12s,background .15s;
+    position:relative;
+  }
+  .add-btn::before{content:'+';font-size:22px;font-weight:700;color:#000;line-height:1;position:absolute}
+  .add-btn:active{transform:scale(.88);background:var(--accent2)}
+
+  /* Quantity control (when in cart) */
+  .qty-control{
+    background:rgba(205,145,56,.12);border-radius:20px;
+    padding:3px;display:flex;align-items:center;gap:2px;
+  }
+  .qty-btn{
+    width:30px;height:30px;border-radius:50%;
+    background:rgba(205,145,56,.18);
+    color:var(--accent);font-size:18px;font-weight:700;
+    display:flex;align-items:center;justify-content:center;
+    transition:background .15s;
+  }
+  .qty-btn:active{background:rgba(205,145,56,.4)}
+  .qty-num{font-size:13px;font-weight:800;color:#fff;min-width:16px;text-align:center}
+
+  /* ---- PRODUCTS GRID — строго 2 колонки ---- */
+  .products-grid{
+    display:grid !important;
+    grid-template-columns:repeat(2,1fr) !important;
+    gap:12px !important;
+    padding:0 12px !important;
+  }
+
+  /* ---- CART PANEL — bottom sheet на мобиле ---- */
+  .cart-panel{
+    width:100% !important;
+    max-width:100% !important;
+    height:90vh !important;
+    top:auto !important;
+    bottom:-100vh !important;
+    right:0 !important;
+    left:0 !important;
+    border-left:none !important;
+    border-top:1px solid var(--border);
+    border-radius:16px 16px 0 0;
+    transition:bottom .35s cubic-bezier(.32,1,.46,1) !important;
+  }
+  .cart-panel.open{bottom:0 !important;right:0 !important}
+  .cart-header{border-radius:16px 16px 0 0;padding:16px 20px}
+  .cart-items{padding:10px 16px}
+  .cart-footer{padding:14px 16px}
+  .cart-total strong{font-size:20px}
+
+  /* ---- ORDER MODAL — native bottom sheet ---- */
+  .modal-header{padding:20px 20px 0}
+  .modal-body{padding:16px 20px 100px}
+  .delivery-opt strong{font-size:13px}
+
+  /* ---- DELIVERY PAGE ---- */
+  .delivery-page{padding:20px 16px 40px}
+  .delivery-page h1{font-size:24px}
+  .delivery-cards{grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+  .delivery-card{padding:16px 12px}
+  .delivery-card-icon{font-size:28px;margin-bottom:8px}
+  .delivery-card h3{font-size:13px;margin-bottom:6px}
+  .delivery-card p{font-size:12px}
+  .delivery-conditions{padding:18px}
+  .delivery-conditions h3{font-size:16px}
+  .delivery-conditions li{font-size:13px}
+
+  /* ---- ABOUT PAGE ---- */
+  .about-page{padding:20px 16px 40px}
+  .about-page h1{font-size:24px}
+  .about-company-block{grid-template-columns:1fr;gap:20px;margin-bottom:24px}
+  .about-company-img{display:none}
+  .about-company-text p{font-size:14px}
+  .advantages-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .advantage-card{padding:14px}
+  .advantage-icon{font-size:26px;margin-bottom:8px}
+  .advantage-card h4{font-size:13px}
+  .advantage-card p{font-size:11px}
+
+  /* ---- REVIEWS PAGE ---- */
+  .reviews-page{padding:20px 16px 40px}
+  .reviews-page h1{font-size:24px}
+  .reviews-rating{padding:16px;gap:12px;margin:14px 0 22px}
+  .rating-big{font-size:48px}
+  .rating-stars{font-size:20px}
+  .review-form{padding:18px;margin-top:24px}
+  .review-form h3{font-size:16px;margin-bottom:14px}
+  .star-rating label{font-size:32px}
+
+  /* ---- CONTACTS PAGE ---- */
+  .contacts-page{padding:20px 16px 40px}
+  .contacts-page h1{font-size:24px}
+  .contacts-grid{grid-template-columns:1fr;gap:12px;margin-top:18px}
+  .contact-block{padding:16px}
+  .map-placeholder{height:180px}
+  .callback-form{padding:16px}
+  .callback-form h3{font-size:16px;margin-bottom:14px}
+  .callback-form>div{grid-template-columns:1fr!important;gap:0}
+
+  /* ---- FOOTER ---- */
+  footer{padding:28px 16px 16px}
+  .footer-top{grid-template-columns:1fr;gap:20px}
+  .footer-col:nth-child(3),.footer-col:nth-child(4){display:none}
+  .footer-desc{font-size:12px;margin-bottom:12px}
+  .footer-bottom{flex-direction:column;text-align:center;gap:4px}
+  .footer-bottom p{font-size:11px}
+
+  /* Toast — above float cart + mob nav */
+  .toast{left:12px;right:12px;bottom:140px;max-width:none;text-align:center}
+  .page-breadcrumb{margin-bottom:12px}
+}
+
+/* Extra small ≤400px — карточки ВСЕГДА 2 колонки */
+@media(max-width:400px){
+  .products-grid{display:grid !important;grid-template-columns:repeat(2,1fr) !important;gap:8px !important;padding:0 10px !important}
+  .product-card{height:200px}
+  .delivery-cards{grid-template-columns:1fr}
+  .about-features{grid-template-columns:1fr}
+  .advantages-grid{grid-template-columns:1fr}
+  .info-bar-inner{grid-template-columns:1fr;gap:8px}
+  .cat-slider{grid-template-columns:repeat(2,1fr)}
+}
+
+@media screen and (max-width: 768px) {
+  .menu-page-layout {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+    padding: 0 !important;
+  }
+  .menu-sidebar {
+    width: 100% !important;
+    max-width: 100vw !important;
+  }
+  .menu-content {
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+  .products-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    gap: 10px !important;
+    padding: 0 10px !important;
+    box-sizing: border-box !important;
+  }
+  .product-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  // TODO: замените на свой Public Key с emailjs.com
+  // emailjs.init('YOUR_PUBLIC_KEY');
+</script>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <span>Бесплатная доставка при заказе от <strong>1 800 ₽</strong> (до 10 км)</span>
+  <span>Ежедневно <strong>10:00–23:00</strong></span>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="logo" onclick="showPage('home')" style="cursor:pointer">
+      <img src="https://web.archive.org/web/20250518061314im_/https://shashlikcentr.ru/wp-content/uploads/2021/04/cropped-logo.png" alt="Шашлык Центр" onerror="this.style.display='none'"/>
+      <div class="logo-text">ШАШЛЫК ЦЕНТР<span>МОСКВА</span></div>
+    </div>
+    <nav>
+      <a class="nav-link active" onclick="showPage('home');setActive(this)">Главная</a>
+      <a class="nav-link" onclick="showPage('menu');setActive(this)">Меню</a>
+      <a class="nav-link" onclick="showPage('delivery');setActive(this)">Доставка</a>
+      <a class="nav-link" onclick="showPage('about');setActive(this)">О нас</a>
+      <a class="nav-link" onclick="showPage('reviews');setActive(this)">Отзывы</a>
+      <a class="nav-link" onclick="showPage('contacts');setActive(this)">Контакты</a>
+    </nav>
+    <div class="header-phones">
+      <a href="tel:+79250313133">+7 (925) 031-31-33</a>
+    </div>
+    <button class="cart-btn" onclick="openCart()">
+      🛒 Корзина
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</header>
+
+<!-- ===================== HOME PAGE ===================== -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge">🔥 Готовим на мангале</div>
+        <h1>Настоящий <span>шашлык</span> с доставкой на дом</h1>
+        <p class="hero-desc">Свежее мясо, проверенные рецепты, горячая доставка в термосумках. Заказывайте — привезём за 40 минут.</p>
+        <div class="hero-actions">
+          <a class="btn-primary" onclick="showPage('menu')">Смотреть меню</a>
+          <a class="btn-secondary" href="tel:+79250313133">Позвонить</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><strong>40 мин</strong><span>Доставка</span></div>
+          <div class="hero-stat"><strong>1 800 ₽</strong><span>Мин. заказ</span></div>
+          <div class="hero-stat"><strong>5.0 ★</strong><span>Рейтинг</span></div>
+        </div>
+      </div>
+      <div class="hero-img">
+        <img src="https://web.archive.org/web/20250518061314im_/https://shashlikcentr.ru/wp-content/uploads/2021/04/cyplenok-na-mangale.jpeg" alt="Шашлык" loading="lazy"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO BAR -->
+  <div class="info-bar">
+    <div class="info-bar-inner">
+      <div class="info-item">
+        <div class="info-icon">🕙</div>
+        <div><strong>Ежедневно 10:00–23:00</strong><span>Время работы</span></div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">🚗</div>
+        <div><strong>Бесплатно от 1 800 ₽</strong><span>Доставка (до 10 км)</span></div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">⏱</div>
+        <div><strong>~40 минут</strong><span>Время доставки</span></div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">📍</div>
+        <div><strong>ул. Красноярская, 2</strong><span>г. Москва</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CATEGORIES -->
+  <section class="section" style="background:var(--dark2)">
+    <div class="section-inner">
+      <div class="section-header">
+        <h2>Что мы <span>предлагаем</span></h2>
+        <p>Выбирайте из 15 категорий блюд, приготовленных на живом огне</p>
+        <em class="accent-line"></em>
+      </div>
+      <div class="cat-slider" id="homeCatSlider"></div>
+      <div style="text-align:center;margin-top:32px">
+        <a class="btn-primary" onclick="showPage('menu')">Перейти в меню →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-img-wrap">
+          <img src="https://web.archive.org/web/20250518061314im_/https://shashlikcentr.ru/wp-content/uploads/2021/04/photo_2021-04-16_01-03-14.jpg" alt="О нас" loading="lazy"/>
+        </div>
+        <div class="about-text">
+          <div class="about-badge">О нас</div>
+          <h2>ШАШЛЫК ЦЕНТР — вкус, которому доверяют</h2>
+          <p>Мы готовим исключительно из свежего мяса. Вы можете выбрать любое блюдо из нашего меню, и мы доставим его в кратчайшее время и в горячем виде.</p>
+          <p>Для доставки мы используем термосумки, чтобы Ваш заказ был максимально горячим. Вкусный шашлык, люля-кебаб, рыба, овощи на гриле, шаурма и многое другое.</p>
+          <div class="about-features">
+            <div class="about-feature"><span class="about-feature-icon">🥩</span><div><strong>Свежее мясо</strong><span>Только проверенные поставщики</span></div></div>
+            <div class="about-feature"><span class="about-feature-icon">💰</span><div><strong>Низкие цены</strong><span>Одни из лучших в Москве</span></div></div>
+            <div class="about-feature"><span class="about-feature-icon">⚡</span><div><strong>Быстро</strong><span>Работаем над скоростью</span></div></div>
+            <div class="about-feature"><span class="about-feature-icon">🎁</span><div><strong>Скидка 10%</strong><span>В День рождения</span></div></div>
+          </div>
+          <div style="margin-top:24px">
+            <a class="btn-primary" onclick="showPage('about')">Подробнее о нас</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="section" style="background:var(--dark2)">
+    <div class="section-inner">
+      <div class="section-header">
+        <h2>Отзывы <span>клиентов</span></h2>
+        <p>Нам доверяют сотни довольных гостей</p>
+        <em class="accent-line"></em>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Очень вкусные блюда просто шикарные на вкус, доставка быстрая и очень вежливое общение.»</p>
+          <div class="review-author"><div class="review-avatar">А</div><div><strong>Артур</strong><span>Постоянный клиент</span></div></div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Добрый вечер, заказывали у вас впервые и очень довольны. Все было вкусно. Доставка и общение по телефону — Отлично. всё понравилось! Большое спасибо!!!»</p>
+          <div class="review-author"><div class="review-avatar">Н</div><div><strong>Наташа</strong><span>Новый клиент</span></div></div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Спасибо Шашлык центр, за вкусный шашлык, был очень сочный, свежий. Заказываем уже в десятый раз, всё всегда вкусно и быстро!»</p>
+          <div class="review-author"><div class="review-avatar">А</div><div><strong>Алексей</strong><span>Постоянный клиент</span></div></div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:32px">
+        <a class="btn-secondary" onclick="showPage('reviews')">Все отзывы</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ===================== MENU PAGE ===================== -->
+<div class="page" id="page-menu">
+  <div class="menu-page-layout">
+    <aside class="menu-sidebar">
+      <h3>Категории</h3>
+      <div id="menuSidebar" class="categories-scroll"></div>
+    </aside>
+    <div class="menu-content">
+      <h2 id="menuCatTitle">Меню</h2>
+      <p class="cat-desc" id="menuCatDesc"></p>
+      <div class="products-grid" id="productsGrid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== DELIVERY PAGE ===================== -->
+<div class="page" id="page-delivery">
+  <div class="delivery-page">
+    <div class="page-breadcrumb">Главная / <span>Доставка</span></div>
+    <h1>Условия доставки</h1>
+    <div class="delivery-cards">
+      <div class="delivery-card">
+        <div class="delivery-card-icon">💰</div>
+        <h3>Минимальный заказ</h3>
+        <p>От <strong>1 800 рублей</strong> для оформления доставки</p>
+      </div>
+      <div class="delivery-card">
+        <div class="delivery-card-icon">🚗</div>
+        <h3>Бесплатная доставка</h3>
+        <p>При заказе от 1 800 ₽ до <strong>10 км</strong> от нас — доставка бесплатно</p>
+      </div>
+      <div class="delivery-card">
+        <div class="delivery-card-icon">⏱</div>
+        <h3>Время доставки</h3>
+        <p>Доставляем в течение <strong>40 минут</strong>. Стараемся привезти раньше!</p>
+      </div>
+      <div class="delivery-card">
+        <div class="delivery-card-icon">🌡</div>
+        <h3>Термосумки</h3>
+        <p>Используем термосумки, чтобы еда приехала <strong>максимально горячей</strong></p>
+      </div>
+    </div>
+    <div class="delivery-conditions">
+      <h3>Как оформить заказ</h3>
+      <ul>
+        <li>Позвоните нам: <strong style="color:var(--accent)">+7 (925) 031-31-33</strong></li>
+        <li>Выберите блюда из меню онлайн и нажмите «Оформить заказ»</li>
+        <li>Укажите адрес доставки или выберите самовывоз по адресу: ул. Красноярская, 2</li>
+        <li>Мы свяжемся с вами для подтверждения</li>
+        <li>Принимаем наличные и банковские карты</li>
+        <li>Предзаказ к любому времени — готовим точно ко времени!</li>
+        <li>Скидка 10% в День рождения — не забудьте сообщить оператору</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== ABOUT PAGE ===================== -->
+<div class="page" id="page-about">
+  <div class="about-page">
+    <div class="page-breadcrumb">Главная / <span>О нас</span></div>
+    <h1>О компании</h1>
+    <div class="about-company-block">
+      <div class="about-company-text">
+        <p>Вкусный шашлык, люля-кебаб, рыба, овощи на гриле, шаурма и многое другое на заказ в Москве. Всё готовится на мангале из качественной продукции.</p>
+        <p>Большой ассортимент, лучший вкус и низкие цены Вас удивят. Попробовав наши блюда Вы войдёте во вкус, т.к. такого как у нас нигде больше нет.</p>
+        <p>Предоставляем скидку ко Дню Рождения <strong style="color:var(--accent)">10%</strong>. Осуществляем предзаказ к любому времени.</p>
+      </div>
+      <div class="about-company-img">
+        <img src="https://web.archive.org/web/20250518061314im_/https://shashlikcentr.ru/wp-content/uploads/2021/04/photo_2021-04-16_01-02-59.jpg" alt="Шашлык Центр" loading="lazy"/>
+      </div>
+    </div>
+    <div class="section-header" style="text-align:left;margin-bottom:24px">
+      <h2 style="font-family:Montserrat,sans-serif;font-size:24px;font-weight:800;color:#fff">Наши <span style="color:var(--accent)">преимущества</span></h2>
+    </div>
+    <div class="advantages-grid">
+      <div class="advantage-card"><div class="advantage-icon">🏆</div><h4>Высокое качество</h4><p>Заботимся о наших клиентах и гарантируем лучшее качество</p></div>
+      <div class="advantage-card"><div class="advantage-icon">💵</div><h4>Низкая цена</h4><p>Готовы предложить одни из лучших цен в Москве</p></div>
+      <div class="advantage-card"><div class="advantage-icon">⚡</div><h4>Минимальные сроки</h4><p>Постоянно работаем над увеличением скорости выполнения заказов</p></div>
+      <div class="advantage-card"><div class="advantage-icon">🎁</div><h4>Скидки</h4><p>Индивидуальные предложения для постоянных клиентов</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== REVIEWS PAGE ===================== -->
+<div class="page" id="page-reviews">
+  <div class="reviews-page">
+    <div class="page-breadcrumb">Главная / <span>Отзывы</span></div>
+    <h1>Отзывы клиентов</h1>
+    <div class="reviews-rating">
+      <div class="rating-big">5.0</div>
+      <div>
+        <div class="rating-stars">★★★★★</div>
+        <div class="rating-label">На основе отзывов наших клиентов</div>
+      </div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">«Очень вкусные блюда просто шикарные на вкус, доставка быстрая и очень вежливое общение.»</p>
+        <div class="review-author"><div class="review-avatar">А</div><div><strong>Артур</strong><span>Постоянный клиент</span></div></div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">«Добрый вечер, заказывали у вас впервые и очень довольны. Все было вкусно. Доставка и общение по телефону — Отлично. всё понравилось! Большое спасибо!!!»</p>
+        <div class="review-author"><div class="review-avatar">Н</div><div><strong>Наташа</strong><span>Новый клиент</span></div></div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">«Спасибо Шашлык центр, за вкусный шашлык, был очень сочный, свежий. Заказываем уже в десятый раз, всё всегда вкусно и быстро!»</p>
+        <div class="review-author"><div class="review-avatar">А</div><div><strong>Алексей</strong><span>Постоянный клиент</span></div></div>
+      </div>
+    </div>
+    <div class="review-form">
+      <h3>Оставить отзыв</h3>
+      <div class="form-group">
+        <label>Ваше имя</label>
+        <input type="text" placeholder="Как вас зовут?"/>
+      </div>
+      <div class="form-group">
+        <label>Оценка</label>
+        <div class="star-rating" id="starRating">
+          <input type="radio" name="rating" id="s5" value="5"/><label for="s5" id="sl5">★</label>
+          <input type="radio" name="rating" id="s4" value="4"/><label for="s4" id="sl4">★</label>
+          <input type="radio" name="rating" id="s3" value="3"/><label for="s3" id="sl3">★</label>
+          <input type="radio" name="rating" id="s2" value="2"/><label for="s2" id="sl2">★</label>
+          <input type="radio" name="rating" id="s1" value="1"/><label for="s1" id="sl1">★</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Ваш отзыв</label>
+        <textarea placeholder="Поделитесь впечатлениями..." rows="4"></textarea>
+      </div>
+      <button class="btn-primary" onclick="submitReview(this)">Отправить отзыв</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== CONTACTS PAGE ===================== -->
+<div class="page" id="page-contacts">
+  <div class="contacts-page">
+    <div class="page-breadcrumb">Главная / <span>Контакты</span></div>
+    <h1>Контакты</h1>
+    <div class="contacts-grid">
+      <div class="contact-block">
+        <h3>Адрес и режим работы</h3>
+        <div class="contact-item">
+          <div class="contact-item-icon">📍</div>
+          <div><strong>Наш адрес</strong><span>г. Москва, ул. Красноярская, 2</span></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">🕙</div>
+          <div><strong>Режим работы</strong><span>Ежедневно 10:00–23:00</span></div>
+        </div>
+      </div>
+      <div class="contact-block">
+        <h3>Связь с нами</h3>
+        <div class="contact-item">
+          <div class="contact-item-icon">📞</div>
+          <div><strong>Телефон</strong><span><a href="tel:+79250313133">+7 (925) 031-31-33</a></span></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">📞</div>
+          <div><strong>Телефон</strong><span><a href="tel:+79250313133">+7 (925) 031-31-33</a></span></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">✉</div>
+          <div><strong>Email</strong><span><a href="mailto:info@shashlikcentr.ru">info@shashlikcentr.ru</a></span></div>
+        </div>
+      </div>
+      <div class="map-placeholder">
+        <span style="font-size:48px">🗺</span>
+        <strong style="color:#fff">г. Москва, ул. Красноярская, 2</strong>
+        <span style="font-size:13px">Самовывоз по данному адресу</span>
+      </div>
+      <div class="callback-form">
+        <h3>Заказать обратный звонок</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div class="form-group">
+            <label>Ваше имя</label>
+            <input type="text" placeholder="Имя"/>
+          </div>
+          <div class="form-group">
+            <label>Телефон</label>
+            <input type="tel" placeholder="+7 (___) ___-__-__"/>
+          </div>
+        </div>
+        <button class="btn-primary" onclick="submitCallback(this)">Заказать звонок</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">
+          <img src="https://web.archive.org/web/20250518061314im_/https://shashlikcentr.ru/wp-content/uploads/2021/04/cropped-logo.png" alt="logo" onerror="this.style.display='none'"/>
+          <div class="footer-logo-text">ШАШЛЫК ЦЕНТР<span>МОСКВА</span></div>
+        </div>
+        <p class="footer-desc">Всегда свежее мясо и доступные цены. Доставка бесплатная при заказе от 1 800 рублей (до 10 км). Работаем ежедневно 10:00–23:00.</p>
+        <div class="footer-phones">
+          <a href="tel:+79250313133">+7 (925) 031-31-33</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Навигация</h4>
+        <ul>
+          <li><a onclick="showPage('menu')">Меню</a></li>
+          <li><a onclick="showPage('delivery')">Доставка</a></li>
+          <li><a onclick="showPage('about')">О нас</a></li>
+          <li><a onclick="showPage('reviews')">Отзывы</a></li>
+          <li><a onclick="showPage('contacts')">Контакты</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Контакты</h4>
+        <ul>
+          <li><a>ул. Красноярская, 2</a></li>
+          <li><a href="mailto:info@shashlikcentr.ru">info@shashlikcentr.ru</a></li>
+          <li><a>10:00–23:00 ежедневно</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Меню</h4>
+        <ul>
+          <li><a onclick="showPage('menu');selectCategory('lulya-kebab')">Люля-кебаб</a></li>
+          <li><a onclick="showPage('menu');selectCategory('svinina')">Свинина</a></li>
+          <li><a onclick="showPage('menu');selectCategory('kurica')">Курица</a></li>
+          <li><a onclick="showPage('menu');selectCategory('riba')">Рыба</a></li>
+          <li><a onclick="showPage('menu');selectCategory('napitki')">Напитки</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Шашлык Центр. Все права защищены.</p>
+      <p>г. Москва, ул. Красноярская, 2</p>
+    </div>
+  </div>
+</footer>
+
+<!-- CART OVERLAY & PANEL -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-panel" id="cartPanel">
+  <div class="cart-drag-handle" onclick="closeCart()"></div>
+  <div class="cart-header">
+    <h3>🛒 Корзина</h3>
+    <button class="cart-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total">
+      <span>Итого:</span>
+      <strong><em id="cartTotalPrice">0</em> ₽</strong>
+    </div>
+    <button class="btn-checkout" onclick="openOrderModal()">Оформить заказ</button>
+    <p class="cart-min-note">Минимальная сумма доставки: 1 800 ₽</p>
+  </div>
+</div>
+
+<!-- ORDER MODAL -->
+<div class="modal-overlay" id="orderModal">
+  <div class="modal" ontouchstart="">
+    <div class="modal-header">
+      <h3>Оформление заказа</h3>
+      <button class="modal-close" onclick="closeOrderModal()">✕</button>
+    </div>
+    <div class="modal-body" id="orderModalBody">
+      <div class="delivery-toggle">
+        <div class="delivery-opt active" id="optDelivery" onclick="selectDelivery('delivery')">
+          <strong>🚗 Доставка</strong><span>~40 минут</span>
+        </div>
+        <div class="delivery-opt" id="optPickup" onclick="selectDelivery('pickup')">
+          <strong>🏪 Самовывоз</strong><span>ул. Красноярская, 2</span>
+        </div>
+      </div>
+      <div class="address-field show" id="addressField">
+        <div class="form-group">
+          <label>Адрес доставки</label>
+          <input type="text" id="orderAddress" placeholder="Улица, дом, квартира"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Ваше имя *</label>
+        <input type="text" id="orderName" placeholder="Как к вам обращаться?"/>
+      </div>
+      <div class="form-group">
+        <label>Телефон *</label>
+        <input type="tel" id="orderPhone" placeholder="+7 (___) ___-__-__"/>
+      </div>
+      <div class="form-group">
+        <label>Комментарий к заказу</label>
+        <textarea id="orderComment" placeholder="Особые пожелания, способ оплаты..."></textarea>
+      </div>
+      <div class="order-summary">
+        <h4>Ваш заказ</h4>
+        <div id="orderSummaryItems"></div>
+        <div class="order-sum-row total">
+          <span>Итого</span>
+          <em id="orderSummaryTotal">0 ₽</em>
+        </div>
+      </div>
+      <button class="btn-place-order" onclick="placeOrder()">Подтвердить заказ</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- MOBILE BOTTOM NAV -->
+<nav class="mob-nav" id="mobNav">
+  <div class="mob-nav-inner">
+    <button class="mob-nav-btn active" id="mn-home" onclick="showPage('home');mobNavActive('mn-home')">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Главная
+    </button>
+    <button class="mob-nav-btn" id="mn-menu" onclick="showPage('menu');mobNavActive('mn-menu')">
+      <svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="2"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg>
+      Меню
+    </button>
+    <button class="mob-nav-btn" id="mn-cart" onclick="openCart()">
+      <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.98 1.61h9.72a2 2 0 001.98-1.61L23 6H6"/></svg>
+      <span class="mob-cart-badge" id="mobCartBadge" style="display:none">0</span>
+      Корзина
+    </button>
+    <button class="mob-nav-btn" id="mn-more" onclick="openMobMore()">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+      Ещё
+    </button>
+  </div>
+</nav>
+
+<!-- MOB MORE OVERLAY -->
+<div class="mob-more-overlay" id="mobMoreOverlay" onclick="closeMobMore()">
+  <div class="mob-more-sheet" onclick="event.stopPropagation()">
+    <div class="mob-more-handle"></div>
+    <div class="mob-more-item" onclick="showPage('delivery');closeMobMore()"><span class="mob-more-item-icon">🚗</span>Доставка</div>
+    <div class="mob-more-item" onclick="showPage('about');closeMobMore()"><span class="mob-more-item-icon">🏪</span>О нас</div>
+    <div class="mob-more-item" onclick="showPage('reviews');closeMobMore()"><span class="mob-more-item-icon">⭐</span>Отзывы</div>
+    <div class="mob-more-item" onclick="showPage('contacts');closeMobMore()"><span class="mob-more-item-icon">📞</span>Контакты</div>
+  </div>
+</div>
+
+<!-- FLOAT CART BUTTON (mobile) -->
+<div class="float-cart" id="floatCart">
+  <button class="float-cart-btn" onclick="openCart()">
+    <span class="float-cart-left">🛒 Корзина</span>
+    <span class="float-cart-right" id="floatCartTotal">0 ₽</span>
+  </button>
+</div>
+
+<script>
+// ==================== DATA ====================
+// ==BEGIN_MENU_DATA==
+const MENU_DATA = {
+  "lulya-kebab": {name:"Люля-кебаб",desc:"",items:[
+    {name:"Люля кебаб из баранины",price:500,weight:"200г",desc:"Сочный люля-кебаб из рубленой баранины, приготовленный на открытом огне по традиционному рецепту.",img:"images/люля_кебаб_из_баранины.jpg"},
+    {name:"Люля кебаб из говядины",price:450,weight:"200г",desc:"Нежный люля-кебаб из говяжьего фарша с луком и зеленью на углях.",img:"images/люля_кебаб_из_говядины.jpg"},
+    {name:"Люля кебаб куриный",price:400,weight:"200г",desc:"Лёгкий и ароматный люля-кебаб из куриного фарша с грибами.",img:"images/люля_кебаб_куриный.jpg"},
+  ]},
+  "svinina": {name:"Свинина",desc:"",items:[
+    {name:"Свинина корейка",price:370,weight:"250г",desc:"Шашлык из свиной корейки — один из самых популярных. Нежная часть свинины на мангале.",img:"images/свинина_корейка.jpg"},
+    {name:"Свинина мякоть",price:400,weight:"250г",desc:"Шашлык из свиной мякоти с маринадом — сочно и ароматно.",img:"images/свинина_мякоть.jpg"},
+    {name:"Свинина шейка",price:450,weight:"250г",desc:"Шашлык из свиной шейки — самое нежное и сочное мясо для мангала.",img:"images/свинина_шейка.jpg"},
+  ]},
+  "baranina": {name:"Баранина",desc:"",items:[
+    {name:"Баранина мякоть",price:600,weight:"250г",desc:"Нежная баранина, замаринованная по кавказскому рецепту и приготовленная на углях.",img:"images/баранина_мякоть.jpg"},
+    {name:"Баранина на корейке",price:700,weight:"250г",desc:"Баранья корейка на кости — ароматная и сочная, с хрустящей корочкой.",img:"images/баранина_на_корейке.jpg"},
+    {name:"Баранина рёбра",price:400,weight:"250г",desc:"Сочные бараньи рёбрышки, приготовленные на углях",img:"images/баранина_рёбра.jpg"},
+  ]},
+  "gavyadina": {name:"Говядина",desc:"",items:[
+    {name:"Говяжье сердце",price:380,weight:"250г",desc:"Говяжье сердце на углях — нежное и сочное, с дымком мангала.",img:""},
+  ]},
+  "kurica": {name:"Курица",desc:"",items:[
+    {name:"Куриное филе",price:400,weight:"250г",desc:"Диетическое куриное филе на вертеле, маринованное в соевом соусе с лимоном.",img:"images/куриное_филе.jpg"},
+    {name:"Куриные крылышки",price:400,weight:"50г",desc:"Сочные куриные крылья в пряном маринаде, приготовленные на открытом огне.",img:"images/куриные_крылышки.jpg"},
+    {name:"Цыплёнок 1 шт.",price:500,weight:"400г",desc:"Цыплёнок целиком на мангале — ароматный, с хрустящей кожицей.",img:"images/цыплёнок_1_шт_.jpg"},
+  ]},
+  "riba": {name:"Рыба",desc:"",items:[
+    {name:"Рыба Дорадо",price:700,weight:"300г",desc:"Свежая дорадо на гриле с лимоном и зеленью — нежная средиземноморская рыба.",img:"images/рыба_дорадо.jpg"},
+    {name:"Рыба Сибас",price:700,weight:"300г",desc:"Сибас на углях — изысканная морская рыба с тонким вкусом.",img:"images/рыба_сибас.jpg"},
+    {name:"Рыба форель",price:700,weight:"300г",desc:"Форель на мангале — нежная красная рыба с дымком.",img:"images/рыба_форель.jpg"},
+  ]},
+  "ovoshi": {name:"Овощи",desc:"",items:[
+    {name:"Овощной шашлык",price:500,weight:"300г",desc:"Ассорти сезонных овощей на гриле — перец, баклажан, цукини, помидоры.",img:"images/овощной_шашлык.jpg"},
+    {name:"Шампиньоны",price:250,weight:"150г",desc:"Сочные шампиньоны на решётке с ароматными травами.",img:"images/шампиньоны.jpg"},
+  ]},
+  "kartoshka-na-uglyax": {name:"Картошка на углях",desc:"",items:[
+    {name:"Картофель на мангале",price:250,weight:"250г",desc:"Картофель в мундире, запечённый на углях — с хрустящей корочкой и нежной серединкой.",img:"images/картофель_на_мангале.jpg"},
+    {name:"Картофель с курдюком",price:300,weight:"250г",desc:"Картошка на мангале с кусочками курдючного жира — сочная и ароматная.",img:"images/картофель_на_мангале.jpg"},
+  ]},
+  "shaurma-na-uglyax": {name:"Шаурма на углях",desc:"",items:[
+    {name:"Шаурма на углях (курица)",price:300,weight:"200г",desc:"Шаурма с куриным мясом, свежими овощами и фирменным соусом, завёрнутая в лаваш.",img:"images/шаурма_на_углях__курица_.jpg"},
+    {name:"Шаурма на углях (свинина)",price:350,weight:"200г",desc:"Сочная шаурма со свининой, хрустящими овощами и белым соусом.",img:"images/шаурма_на_углях__свинина_.jpg"},
+    {name:"Шаурма на углях (баранина)",price:400,weight:"200г",desc:"Классическая восточная шаурма с бараниной и пряным соусом.",img:"images/шаурма_на_углях__баранина_.jpg"},
+  ]},
+  "saladi": {name:"Салаты",desc:"",items:[
+    {name:"Овощной салат",price:300,weight:"250г",desc:"Свежий овощной салат из помидоров, огурцов и зелени.",img:"images/овощной_салат.jpg"},
+  ]},
+  "sousi": {name:"Соусы",desc:"",items:[
+    {name:"Соус белый",price:50,weight:"130г",desc:"Нежный чесночный белый соус к мясу и лавашу.",img:"images/соус_белый.jpg"},
+    {name:"Соус красный шашлычный",price:50,weight:"130г",desc:"Пряный томатный соус с зеленью и специями.",img:"images/соус_красный_шашлычный.jpg"},
+  ]},
+  "hleb": {name:"Хлеб из тандыра",desc:"",items:[
+    {name:"Лаваш",price:50,weight:"150г",desc:"Тонкий лаваш из тандыра — идеальное дополнение к шашлыку.",img:"images/лаваш.jpg"},
+    {name:"Лепешка",price:100,weight:"400г",desc:"Свежая лепешка из тандыра",img:"images/лепешка.jpg"},
+  ]},
+  "napitki": {name:"Напитки",desc:"",items:[
+    {name:"Вода без газа Бонаква 0.5л",price:50,weight:"500мл",desc:"Негазированная питьевая вода Бонаква, 0.5л.",img:""},
+    {name:"Вода без газа Святой источник 0.5л",price:50,weight:"500мл",desc:"Природная питьевая вода Святой источник, 0.5л.",img:""},
+    {name:"Кока-Кола 0.33л",price:80,weight:"330мл",desc:"Классическая Кока-Кола, 0.33л.",img:""},
+    {name:"Кока-Кола 0.5л",price:100,weight:"500мл",desc:"Классическая Кока-Кола, 0.5л.",img:""},
+    {name:"Кока-Кола 1л",price:130,weight:"1л",desc:"Классическая Кока-Кола, 1л.",img:""},
+    {name:"Фанта 0.33л",price:80,weight:"330мл",desc:"Газированный напиток Фанта апельсин, 0.33л.",img:""},
+    {name:"Фанта 0.5л",price:100,weight:"500мл",desc:"Газированный напиток Фанта апельсин, 0.5л.",img:""},
+    {name:"Лимонад Сан-Славиа",price:60,weight:"500мл",desc:"Домашний лимонад Сан-Славиа в ассортименте.",img:""},
+    {name:"Минеральная вода Боржоми",price:110,weight:"500мл",desc:"Грузинская минеральная вода Боржоми, 0.5л.",img:""},
+    {name:"Минеральная вода Джермук",price:80,weight:"500мл",desc:"Армянская минеральная вода Джермук, 0.5л.",img:""},
+    {name:"Минеральная вода Святой источник",price:50,weight:"500мл",desc:"Природная минеральная вода Святой источник, 0.5л.",img:""},
+    {name:"Сок Добрый в ассортименте",price:55,weight:"200мл",desc:"Сок Добрый: яблоко, апельсин, мультифрукт.",img:""},
+    {name:"Компот в ассортименте 1л",price:170,weight:"1л",desc:"Компот из натуральных фруктов на весь день.",img:""},
+  ]},
+};
+const CAT_ORDER = ["lulya-kebab", "svinina", "baranina", "gavyadina", "kurica", "riba", "ovoshi", "kartoshka-na-uglyax", "shaurma-na-uglyax", "saladi", "sousi", "hleb", "napitki"];
+const CAT_IMGS = {"lulya-kebab": "images/люля_кебаб_из_баранины.jpg", "svinina": "images/свинина_мякоть.jpg", "baranina": "images/cat_baranina.jpg", "gavyadina": "", "kurica": "images/куриное_филе.jpg", "riba": "images/рыба_дорадо.jpg", "ovoshi": "images/овощной_шашлык.jpg", "kartoshka-na-uglyax": "images/картофель_на_мангале.jpg", "shaurma-na-uglyax": "images/шаурма_на_углях__курица_.jpg", "saladi": "images/овощной_салат.jpg", "sousi": "images/cat_sousi.jpg", "hleb": "images/cat_hleb.jpg", "napitki": "images/cat_napitki.jpg"};
+// ==END_MENU_DATA==
+
+// ==================== CART STATE ====================
+let cart = JSON.parse(localStorage.getItem('shashlik_cart') || '[]');
+let currentCat = 'lulya-kebab';
+let deliveryType = 'delivery';
+
+function saveCart() { localStorage.setItem('shashlik_cart', JSON.stringify(cart)); }
+
+function cartTotal() { return cart.reduce((s,i)=>s+i.price*i.qty,0); }
+
+function cartItemCount() { return cart.reduce((s,i)=>s+i.qty,0); }
+
+function updateCartUI() {
+  const count = cartItemCount();
+  document.getElementById('cartCount').textContent = count;
+  renderCartItems();
+  const footer = document.getElementById('cartFooter');
+  footer.style.display = cart.length ? 'block' : 'none';
+  document.getElementById('cartTotalPrice').textContent = cartTotal().toLocaleString('ru');
+  updateMobCartBadge();
+  updateFloatCart();
+}
+
+function renderCartItems() {
+  const el = document.getElementById('cartItems');
+  if (!cart.length) {
+    el.innerHTML = '<div class="cart-empty"><div class="cart-empty-icon">🛒</div><p>Корзина пуста</p><p style="font-size:13px;margin-top:8px;color:#555">Добавьте блюда из меню</p></div>';
+    return;
+  }
+  el.innerHTML = cart.map((item,idx)=>`
+    <div class="cart-item">
+      <img class="cart-item-img" src="${item.img}" alt="${item.name}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2264%22><rect fill=%22%23222%22 width=%2264%22 height=%2264%22/><text x=%2232%22 y=%2240%22 text-anchor=%22middle%22 fill=%22%23555%22 font-size=%2224%22>🍖</text></svg>'"/>
+      <div class="cart-item-body">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-price">${(item.price*item.qty).toLocaleString('ru')} ₽</div>
+        <div class="cart-item-controls">
+          <div class="qty-control">
+            <button class="qty-btn" onclick="changeQty(${idx},-1)">−</button>
+            <span class="qty-num">${item.qty}</span>
+            <button class="qty-btn" onclick="changeQty(${idx},1)">+</button>
+          </div>
+          <span class="cart-remove" onclick="removeItem(${idx})">✕ удалить</span>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function changeQty(idx, delta) {
+  cart[idx].qty += delta;
+  if (cart[idx].qty <= 0) cart.splice(idx,1);
+  saveCart();
+  updateCartUI();
+  renderProductsForQtyUpdate();
+}
+
+function removeItem(idx) {
+  cart.splice(idx,1);
+  saveCart();
+  updateCartUI();
+  renderProductsForQtyUpdate();
+}
+
+function renderProductsForQtyUpdate() {
+  // re-render add buttons in currently visible products
+  document.querySelectorAll('.product-card').forEach(card => {
+    const name = card.dataset.name;
+    const footer = card.querySelector('.product-footer');
+    const inCart = cart.find(i=>i.name===name);
+    if (inCart) {
+      footer.innerHTML = `
+        <span class="product-price">${Number(card.dataset.price).toLocaleString('ru')} ₽</span>
+        <div class="qty-control">
+          <button class="qty-btn" onclick="cartDecrement('${name}')">−</button>
+          <span class="qty-num">${inCart.qty}</span>
+          <button class="qty-btn" onclick="cartIncrement('${name}')">+</button>
+        </div>`;
+    } else {
+      footer.innerHTML = `
+        <span class="product-price">${Number(card.dataset.price).toLocaleString('ru')} ₽</span>
+        <button class="add-btn" onclick="addToCart(${JSON.stringify({name,price:Number(card.dataset.price),img:card.dataset.img,weight:card.dataset.weight}).replace(/"/g,'&quot;')})">+ Добавить</button>`;
+    }
+  });
+}
+
+function cartIncrement(name) {
+  const item = cart.find(i=>i.name===name);
+  if (item) { item.qty++; saveCart(); updateCartUI(); renderProductsForQtyUpdate(); }
+}
+
+function cartDecrement(name) {
+  const idx = cart.findIndex(i=>i.name===name);
+  if (idx>=0) { cart[idx].qty--; if(cart[idx].qty<=0) cart.splice(idx,1); saveCart(); updateCartUI(); renderProductsForQtyUpdate(); }
+}
+
+function addToCart(item) {
+  const ex = cart.find(i=>i.name===item.name);
+  if (ex) { ex.qty++; }
+  else { cart.push({...item,qty:1}); }
+  saveCart();
+  updateCartUI();
+  showToast('✓ Добавлено: ' + item.name);
+  renderProductsForQtyUpdate();
+}
+
+// ==================== PAGES ====================
+const MOB_NAV_MAP = {home:'mn-home',menu:'mn-menu',delivery:'mn-more',about:'mn-more',reviews:'mn-more',contacts:'mn-more'};
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  window.scrollTo(0,0);
+  if (id==='menu') renderMenuPage();
+  if (id==='home') renderHomeCats();
+  // sync mobile nav
+  const mnId = MOB_NAV_MAP[id];
+  if (mnId) mobNavActive(mnId);
+}
+
+function setActive(el) {
+  document.querySelectorAll('.nav-link').forEach(n=>n.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// ==================== HOME CATS ====================
+function renderHomeCats() {
+  const container = document.getElementById('homeCatSlider');
+  if (!container || container.children.length) return;
+  container.innerHTML = CAT_ORDER.map(slug=>`
+    <div class="cat-card" onclick="showPage('menu');selectCategory('${slug}')">
+      <img src="${CAT_IMGS[slug]||''}" alt="${MENU_DATA[slug].name}" loading="lazy" onerror="this.style.background='#222';this.style.height='120px'"/>
+      <div class="cat-card-name">${MENU_DATA[slug].name}</div>
+    </div>`).join('');
+}
+
+// ==================== MENU PAGE ====================
+function renderMenuPage() {
+  renderMenuSidebar();
+  renderProducts(currentCat);
+}
+
+function renderMenuSidebar() {
+  const el = document.getElementById('menuSidebar');
+  el.innerHTML = CAT_ORDER.map(slug=>`
+    <div class="cat-menu-item ${slug===currentCat?'active':''}" onclick="selectCategory('${slug}')">
+      <span class="dot"></span>${MENU_DATA[slug].name}
+    </div>`).join('');
+}
+
+function selectCategory(slug) {
+  currentCat = slug;
+  renderMenuSidebar();
+  renderProducts(slug);
+  window.scrollTo(0,0);
+}
+
+function renderProducts(slug) {
+  const cat = MENU_DATA[slug];
+  document.getElementById('menuCatTitle').textContent = cat.name;
+  document.getElementById('menuCatDesc').textContent = `${cat.items.length} блюд в категории`;
+  const grid = document.getElementById('productsGrid');
+  grid.innerHTML = cat.items.map(item => {
+    const inCart = cart.find(i=>i.name===item.name);
+    const imgData = JSON.stringify({name:item.name,price:item.price,img:item.img,weight:item.weight}).replace(/"/g,'&quot;');
+    const footerHtml = inCart
+      ? `<span class="product-price">${item.price.toLocaleString('ru')} ₽</span>
+         <div class="qty-control">
+           <button class="qty-btn" onclick="cartDecrement('${item.name.replace(/'/g,"\\'")}')">−</button>
+           <span class="qty-num">${inCart.qty}</span>
+           <button class="qty-btn" onclick="cartIncrement('${item.name.replace(/'/g,"\\'")}')">+</button>
+         </div>`
+      : `<span class="product-price">${item.price.toLocaleString('ru')} ₽</span>
+         <button class="add-btn" onclick="addToCart(${imgData})">+ Добавить</button>`;
+    return `
+      <div class="product-card" data-name="${item.name}" data-price="${item.price}" data-img="${item.img}" data-weight="${item.weight}">
+        <div class="product-img">
+          <img src="${item.img}" alt="${item.name}" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('no-img')"/>
+          ${item.weight?`<span class="product-weight">${item.weight}</span>`:''}
+        </div>
+        <div class="product-body">
+          <div class="product-name">${item.name}</div>
+          <div class="product-desc">${item.desc}</div>
+          <div class="product-footer">${footerHtml}</div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+// ==================== CART ====================
+function openCart() {
+  _scrollY = window.scrollY;
+  renderCartItems();
+  document.getElementById('cartOverlay').classList.add('open');
+  document.getElementById('cartPanel').classList.add('open');
+  document.body.style.top=`-${_scrollY}px`;
+  document.body.style.overflow='hidden';
+  document.body.style.position='fixed';
+  document.body.style.width='100%';
+}
+
+function closeCart() {
+  document.getElementById('cartOverlay').classList.remove('open');
+  document.getElementById('cartPanel').classList.remove('open');
+  document.body.style.top='';
+  document.body.style.overflow='';
+  document.body.style.position='';
+  document.body.style.width='';
+  window.scrollTo(0,_scrollY);
+}
+
+// ==================== ORDER MODAL ====================
+function openOrderModal() {
+  closeCart();
+  document.getElementById('orderModalBody').innerHTML = _originalModalBody;
+  selectDelivery(deliveryType);
+  renderOrderSummary();
+  document.getElementById('orderModal').classList.add('open');
+  document.querySelector('.modal').scrollTop = 0;
+  _scrollY = window.scrollY;
+  document.body.style.top=`-${_scrollY}px`;
+  document.body.style.overflow='hidden';
+  document.body.style.position='fixed';
+  document.body.style.width='100%';
+}
+
+function closeOrderModal() {
+  document.getElementById('orderModal').classList.remove('open');
+  document.body.style.top='';
+  document.body.style.overflow='';
+  document.body.style.position='';
+  document.body.style.width='';
+  window.scrollTo(0,_scrollY);
+}
+
+function selectDelivery(type) {
+  deliveryType = type;
+  document.getElementById('optDelivery').classList.toggle('active', type==='delivery');
+  document.getElementById('optPickup').classList.toggle('active', type==='pickup');
+  document.getElementById('addressField').classList.toggle('show', type==='delivery');
+}
+
+function renderOrderSummary() {
+  const items = document.getElementById('orderSummaryItems');
+  items.innerHTML = cart.map(i=>`
+    <div class="order-sum-row">
+      <span>${i.name} × ${i.qty}</span>
+      <span>${(i.price*i.qty).toLocaleString('ru')} ₽</span>
+    </div>`).join('');
+  document.getElementById('orderSummaryTotal').textContent = cartTotal().toLocaleString('ru') + ' ₽';
+}
+
+function placeOrder() {
+  if (!cart.length) { showToast('⚠️ Добавьте блюда в корзину'); return; }
+  const name = document.getElementById('orderName').value.trim();
+  const phone = document.getElementById('orderPhone').value.trim();
+  const address = document.getElementById('orderAddress').value.trim();
+  const comment = document.getElementById('orderComment').value.trim();
+
+  if (!name) { showToast('⚠️ Введите имя'); return; }
+  if (!phone) { showToast('⚠️ Введите номер телефона'); return; }
+  if (phone.replace(/\D/g,'').length < 10) { showToast('⚠️ Введите корректный номер телефона'); return; }
+  if (deliveryType==='delivery' && !address) { showToast('⚠️ Введите адрес доставки'); return; }
+  if (cartTotal() < 1800 && deliveryType==='delivery') {
+    showToast('⚠️ Минимальная сумма доставки 1 800 ₽');
+    return;
+  }
+
+  const TELEGRAM_TOKEN = '8915848406:AAGaLJrRr5atYEtFM1qfnKOPQjxwaw8ZiV4';
+  const TELEGRAM_CHAT_ID = -1003970184252;
+
+  const orderText = `🔥 НОВЫЙ ЗАКАЗ!\n\n` +
+    `👤 Имя: ${name}\n` +
+    `📞 Телефон: ${phone}\n` +
+    `🚗 Тип: ${deliveryType === 'delivery' ? 'Доставка' : 'Самовывоз'}\n` +
+    (deliveryType === 'delivery' ? `📍 Адрес: ${address}\n` : '') +
+    (comment ? `💬 Комментарий: ${comment}\n` : '') +
+    `\n🛒 Состав:\n` +
+    cart.map(i => `• ${i.name} x${i.qty} — ${i.price * i.qty}₽`).join('\n') +
+    `\n\n💰 Итого: ${cart.reduce((s,i) => s + i.price * i.qty, 0)}₽`;
+
+  fetch('http://46.226.163.230:8765', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ text: orderText })
+  });
+
+  fetch('https://formspree.io/f/xykvdkyo', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify({
+      _subject: '🔥 Новый заказ — ' + cart.reduce((s,i) => s + i.price * i.qty, 0) + '₽',
+      name:     name,
+      phone:    phone,
+      delivery: deliveryType === 'delivery' ? 'Доставка' : 'Самовывоз',
+      address:  address || 'Самовывоз',
+      comment:  comment || 'Нет',
+      items:    cart.map(i => i.name + ' x' + i.qty + ' — ' + (i.price * i.qty) + '₽').join('\n'),
+      total:    cart.reduce((s,i) => s + i.price * i.qty, 0) + '₽'
+    })
+  })
+  .then(res => res.json())
+  .then(data => console.log('Formspree:', data))
+  .catch(err => console.error('Formspree error:', err));
+
+  // TODO: EmailJS — раскомментируйте после получения ключей на emailjs.com
+  // emailjs.send('SERVICE_ID', 'TEMPLATE_ID', {
+  //   to_email:      'info@shashlikcentr.ru',
+  //   customer_name:  name,
+  //   customer_phone: phone,
+  //   delivery_type:  deliveryType === 'delivery' ? 'Доставка' : 'Самовывоз',
+  //   order_items:    cart.map(i => i.name + ' x' + i.qty + ' — ' + i.price * i.qty + '₽').join('\n'),
+  //   total:          cartTotal() + '₽',
+  //   address:        deliveryType === 'delivery' ? address : 'Самовывоз',
+  //   comment:        comment || '—'
+  // });
+
+  // Show success
+  document.getElementById('orderModalBody').innerHTML = `
+    <div class="success-modal">
+      <div class="success-icon">✅</div>
+      <h3>Заказ оформлен!</h3>
+      <p>Спасибо, <strong style="color:var(--accent)">${name}</strong>!<br>Мы свяжемся с вами в ближайшее время по номеру <strong>${phone}</strong>.<br><br>Ориентировочное время доставки — <strong>40 минут</strong>.</p>
+      <button class="btn-primary" style="margin-top:24px" onclick="closeOrderModal()">Хорошо</button>
+    </div>`;
+
+  cart = [];
+  saveCart();
+  updateCartUI();
+}
+
+// ==================== TOAST ====================
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 3000);
+}
+
+// ==================== REVIEW ====================
+function submitReview(btn) {
+  showToast('✓ Отзыв отправлен. Спасибо!');
+  btn.textContent = 'Отправлено ✓';
+  btn.disabled = true;
+}
+
+function submitCallback(btn) {
+  showToast('✓ Мы перезвоним вам в ближайшее время!');
+  btn.textContent = 'Заявка принята ✓';
+  btn.disabled = true;
+}
+
+// ==================== STAR RATING ====================
+document.querySelectorAll('.star-rating label').forEach((lbl, i, all) => {
+  lbl.addEventListener('mouseenter', ()=>{
+    all.forEach((l,j)=> l.classList.toggle('active', j<=i));
+  });
+  lbl.addEventListener('click', ()=>{
+    all.forEach((l,j)=> l.classList.toggle('active', j<=i));
+  });
+});
+document.getElementById('starRating')?.addEventListener('mouseleave', ()=>{
+  const checked = document.querySelector('.star-rating input:checked');
+  if (!checked) document.querySelectorAll('.star-rating label').forEach(l=>l.classList.remove('active'));
+});
+
+// ==================== MOBILE NAV ====================
+function mobNavActive(id) {
+  document.querySelectorAll('.mob-nav-btn').forEach(b=>b.classList.remove('active'));
+  const el = document.getElementById(id);
+  if (el) el.classList.add('active');
+}
+
+function updateMobCartBadge() {
+  const count = cartItemCount();
+  const badge = document.getElementById('mobCartBadge');
+  if (!badge) return;
+  if (count > 0) { badge.textContent = count; badge.style.display = 'flex'; }
+  else { badge.style.display = 'none'; }
+}
+
+// ==================== FLOAT CART BUTTON ====================
+function updateFloatCart() {
+  const el = document.getElementById('floatCart');
+  if (!el) return;
+  const total = cartTotal();
+  if (total > 0) {
+    el.classList.add('visible');
+    const tot = document.getElementById('floatCartTotal');
+    if (tot) tot.textContent = total.toLocaleString('ru') + ' ₽';
+  } else {
+    el.classList.remove('visible');
+  }
+}
+
+// ==================== MOB MORE ====================
+function openMobMore() {
+  document.getElementById('mobMoreOverlay').classList.add('open');
+}
+function closeMobMore() {
+  document.getElementById('mobMoreOverlay').classList.remove('open');
+}
+
+// ==================== INIT ====================
+let _scrollY = 0;
+const _originalModalBody = document.getElementById('orderModalBody').innerHTML;
+updateCartUI();
+renderHomeCats();
+</script>
+</body>
+</html>
