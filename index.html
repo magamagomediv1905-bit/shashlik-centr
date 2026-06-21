@@ -1524,32 +1524,30 @@ function placeOrder() {
     cart.map(i => `• ${i.name} x${i.qty} — ${i.price * i.qty}₽`).join('\n') +
     `\n\n💰 Итого: ${cart.reduce((s,i) => s + i.price * i.qty, 0)}₽`;
 
-  fetch('http://46.226.163.230:8765', {
+  fetch('https://shashlik-centr.ru/api/order', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({ text: orderText })
-  });
-
-  fetch('https://formspree.io/f/xykvdkyo', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    },
-    body: JSON.stringify({
-      _subject: '🔥 Новый заказ — ' + cart.reduce((s,i) => s + i.price * i.qty, 0) + '₽',
-      name:     name,
-      phone:    phone,
-      delivery: deliveryType === 'delivery' ? 'Доставка' : 'Самовывоз',
-      address:  address || 'Самовывоз',
-      comment:  comment || 'Нет',
-      items:    cart.map(i => i.name + ' x' + i.qty + ' — ' + (i.price * i.qty) + '₽').join('\n'),
-      total:    cart.reduce((s,i) => s + i.price * i.qty, 0) + '₽'
-    })
   })
-  .then(res => res.json())
-  .then(data => console.log('Formspree:', data))
-  .catch(err => console.error('Formspree error:', err));
+  .catch(() => {
+    fetch('https://formspree.io/f/xykvdkyo', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        _subject: '🔥 Новый заказ — ' + cart.reduce((s,i) => s + i.price * i.qty, 0) + '₽',
+        name:     name,
+        phone:    phone,
+        delivery: deliveryType === 'delivery' ? 'Доставка' : 'Самовывоз',
+        address:  address || 'Самовывоз',
+        comment:  comment || 'Нет',
+        items:    cart.map(i => i.name + ' x' + i.qty + ' — ' + (i.price * i.qty) + '₽').join('\n'),
+        total:    cart.reduce((s,i) => s + i.price * i.qty, 0) + '₽'
+      })
+    });
+  });
 
   // TODO: EmailJS — раскомментируйте после получения ключей на emailjs.com
   // emailjs.send('SERVICE_ID', 'TEMPLATE_ID', {
