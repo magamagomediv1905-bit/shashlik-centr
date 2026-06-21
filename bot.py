@@ -511,11 +511,13 @@ def main() -> None:
     app.add_handler(CommandHandler("menu",  cmd_menu))
 
     app.add_handler(ConversationHandler(
+        conversation_timeout=60,
         entry_points=[CommandHandler("list", cmd_list)],
         states={LIST_CAT: [MessageHandler(filters.TEXT & ~filters.COMMAND, list_select_cat)]},
-        fallbacks=[CommandHandler("cancel", cmd_cancel)],
+        fallbacks=[CommandHandler("cancel", cmd_cancel), CommandHandler("start", cmd_start)],
     ))
     app.add_handler(ConversationHandler(
+        conversation_timeout=60,
         entry_points=[CommandHandler("add", cmd_add)],
         states={
             ADD_CAT:    [MessageHandler(filters.TEXT & ~filters.COMMAND, add_cat)],
@@ -528,9 +530,10 @@ def main() -> None:
                 MessageHandler(filters.Regex(r"^/skip$"), add_img_skip),
             ],
         },
-        fallbacks=[CommandHandler("cancel", cmd_cancel)],
+        fallbacks=[CommandHandler("cancel", cmd_cancel), CommandHandler("start", cmd_start)],
     ))
     app.add_handler(ConversationHandler(
+        conversation_timeout=60,
         entry_points=[CommandHandler("edit", cmd_edit)],
         states={
             EDIT_CAT:   [MessageHandler(filters.TEXT & ~filters.COMMAND, edit_cat)],
@@ -539,16 +542,17 @@ def main() -> None:
             EDIT_VALUE: [MessageHandler(filters.TEXT & ~filters.COMMAND, edit_value)],
             EDIT_PHOTO: [MessageHandler(filters.PHOTO, edit_photo)],
         },
-        fallbacks=[CommandHandler("cancel", cmd_cancel)],
+        fallbacks=[CommandHandler("cancel", cmd_cancel), CommandHandler("start", cmd_start)],
     ))
     app.add_handler(ConversationHandler(
+        conversation_timeout=60,
         entry_points=[CommandHandler("delete", cmd_delete)],
         states={
             DEL_CAT:     [MessageHandler(filters.TEXT & ~filters.COMMAND, del_cat)],
             DEL_ITEM:    [MessageHandler(filters.TEXT & ~filters.COMMAND, del_item)],
             DEL_CONFIRM: [MessageHandler(filters.TEXT & ~filters.COMMAND, del_confirm)],
         },
-        fallbacks=[CommandHandler("cancel", cmd_cancel)],
+        fallbacks=[CommandHandler("cancel", cmd_cancel), CommandHandler("start", cmd_start)],
     ))
 
     logging.info("🍖 Бот запущен")
