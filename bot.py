@@ -9,7 +9,7 @@ from telegram.ext import (
 )
 
 # ── Config ─────────────────────────────────────────────────────────────────
-TOKEN      = "8624425261:AAFjxL9XKVep5XYtd-pDwww4RxqcdhWDQZE"
+TOKEN      = "8624425261:AAFECvE2EE8uo6s3ThZI5RQ2FzuyS-9QlA8"
 OWNER_ID   = 7956675065
 REPO_DIR   = os.path.dirname(os.path.abspath(__file__))
 MENU_JSON  = os.path.join(REPO_DIR, "menu.json")
